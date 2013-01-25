@@ -25,6 +25,7 @@ tmp/**/*
 config/refinery/core.rb
 config/secret_token.rb
 config/database.yml
+config/deploy.rb
 
 # Documentation
 doc/api

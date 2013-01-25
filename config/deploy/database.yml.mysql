@@ -1,0 +1,21 @@
+development: &development
+  adapter: mysql2
+  host: localhost
+  username: root
+  password:
+  database: your_local_database
+
+test: &test
+  adapter: mysql2
+  host: localhost
+  username: root
+  password:
+  database: your_test_database
+
+production: &production
+  adapter: mysql2
+  host: localhost
+  database: religionsfrihet_i_praksis
+  username: rip_admin
+  password: <%= Capistrano::CLI.ui.ask("Enter MySQL password: ") %>
+  encoding: utf8
