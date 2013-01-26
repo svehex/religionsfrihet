@@ -1,3 +1,5 @@
+require 'securerandom'
+
 unless Capistrano::Configuration.respond_to?(:instance)
   abort "This extension requires Capistrano 2"
 end
@@ -27,14 +29,14 @@ Capistrano::Configuration.instance.load do
         EOF
 
         run "mkdir -p #{shared_path}/config/refinery"
-        IO.write("#{shared_path}/config/refinery/core.rb", default_template);
+        put default_template, "#{shared_path}/config/refinery/core.rb"
       end
 
       desc <<-DESC
         [internal] Updates the symlink for secret_token.rb file to the just deployed release.
       DESC
       task :symlink, :except => { :no_release => true } do
-        run "ln -nfs #{shared_path}/config/refinery/core.rb #{release_path}/config/refinery/core.rb"
+        run "ln -nfs #{shared_path}/config/refinery/core.rb #{release_path}/config/initializers/refinery/core.rb"
       end
 
     end

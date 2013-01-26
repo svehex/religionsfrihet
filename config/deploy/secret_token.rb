@@ -17,7 +17,7 @@ Capistrano::Configuration.instance.load do
         EOF
 
         run "mkdir -p #{shared_path}/config"
-        IO.write("#{shared_path}/config/secret_token.rb", default_template);
+        put default_template, "#{shared_path}/config/secret_token.rb"
       end
 
       desc <<-DESC
